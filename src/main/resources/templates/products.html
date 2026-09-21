@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management - BT09 GraphQL</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1>Product Management (GraphQL CRUD)</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/products}">Products</a>
+            <a th:href="@{/categories}">Categories</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 id="formTitle">Add New Product</h2>
+        <div id="alertBox" class="alert"></div>
+
+        <form id="productForm" style="margin-bottom: 30px;">
+            <input type="hidden" id="productId">
+
+            <div class="form-group">
+                <label for="title">Title *</label>
+                <input type="text" id="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity *</label>
+                <input type="number" id="quantity" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price (BigDecimal) *</label>
+                <input type="number" id="price" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="userId">User ID *</label>
+                <input type="number" id="userId" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="categoryId">Category *</label>
+                <select id="categoryId" required>
+                    <option value="">-- Select Category --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" rows="3"></textarea>
+            </div>
+
+            <div>
+                <button type="submit" id="submitBtn" class="btn btn-primary">Create Product</button>
+                <button type="button" id="cancelBtn" class="btn btn-secondary" style="display: none;">Cancel</button>
+            </div>
+        </form>
+
+        <h2>Product List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Category</th>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <tr>
+                    <td colspan="9">Loading products...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script th:src="@{/js/graphql.js}"></script>
+    <script th:src="@{/js/products.js}"></script>
+</body>
+</html>
